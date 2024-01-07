@@ -1,8 +1,8 @@
 <template>
-  <div class="justify-center max-w-md mt-10">
-    <section>
+  <div class="justify-center mt-10">
+    <section class="w-full flex items-center justify-center">
       list of vehicles
-      <div>
+      <div class="flex flex-wrap gap-4 m-auto">
         <ManufactureCard
           v-for="mfct in manufactures"
           v-bind:key="mfct.Mfr_ID"
