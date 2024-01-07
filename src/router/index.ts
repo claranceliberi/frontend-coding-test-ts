@@ -32,6 +32,12 @@ const routes: RouteRecordRaw[] = [
     component: LayoutMain,
     children: mainRoutes,
   },
+  {
+    path: '/manufacture/:id',
+    name: 'Manufacture',
+    props: true,
+    component: () => import('../views/Manufacture.vue'),
+  },
 ]
 
 export default function initializeRouter(app: App): Router {

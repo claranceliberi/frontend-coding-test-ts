@@ -120,6 +120,7 @@
 
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
+import { useToast } from 'vue-toast-notification'
 import { ShowExercises } from '../types/exercise'
 import { getAllManufacturers } from '../services/index'
 import { Manufacturer } from '../types/vehicle.d'
@@ -136,11 +137,19 @@ const showNextExercise = (exercise: keyof ShowExercises) => {
   showExercise[exercise] = !showExercise[exercise]
 }
 
+const $toast = useToast()
+
 onMounted(async () => {
   console.log('Home mounted')
   const res = await getAllManufacturers(1)
 
   manufactures.push(...res.Results)
-  console.log(res)
+  const instance = $toast.success('Data fetched!', {
+    position: 'top-right',
+  })
+
+  setTimeout(() => {
+    instance.dismiss()
+  }, 3000)
 })
 </script>
