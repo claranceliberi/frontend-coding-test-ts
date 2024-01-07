@@ -1,10 +1,11 @@
-import { useToast } from 'vue-toast-notification'
+import { useToast, ActiveToast } from 'vue-toast-notification'
 
 export default function useToaster() {
   const $toast = useToast()
+  let instance: ActiveToast
 
   function toastSuccess(message: string) {
-    const instance = $toast.success(message, {
+    instance = $toast.success(message, {
       position: 'top-right',
     })
 
@@ -14,7 +15,7 @@ export default function useToaster() {
   }
 
   function toastError(message: string) {
-    const instance = $toast.error(message, {
+    instance = $toast.error(message, {
       position: 'top-right',
     })
 
