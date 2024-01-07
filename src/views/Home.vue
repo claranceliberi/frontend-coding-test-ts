@@ -1,8 +1,20 @@
 <template>
   <div class="justify-center max-w-md mt-10">
+    <section>
+      list of vehicles
+      <div>
+        <ManufactureCard
+          v-for="mfct in manufactures"
+          v-bind:key="mfct.Mfr_ID"
+          v-bind:manufacture="mfct"
+        />
+      </div>
+    </section>
+
     <h1 class="font-extrabold tracking-tigh text-3xl leading-10">
       Ready for the challenge?
     </h1>
+
     <div class="mt-8">
       <section>
         <h2 class="font-bold text-2xl leading-6">Exercise 1</h2>
@@ -107,15 +119,28 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { ShowExercises } from '../types/exercise'
+import { getAllManufacturers } from '../services/index'
+import { Manufacturer } from '../types/vehicle.d'
+import ManufactureCard from '../components/ui/ManufactureCard.vue'
 
 const showExercise = reactive<ShowExercises>({
   second: false,
   third: false,
 })
 
+const manufactures = reactive<Manufacturer[]>([])
+
 const showNextExercise = (exercise: keyof ShowExercises) => {
   showExercise[exercise] = !showExercise[exercise]
 }
+
+onMounted(async () => {
+  console.log('Home mounted')
+  const res = await getAllManufacturers(1)
+
+  manufactures.push(...res.Results)
+  console.log(res)
+})
 </script>
