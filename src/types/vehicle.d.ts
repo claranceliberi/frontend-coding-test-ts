@@ -6,7 +6,6 @@ export type VehicleType = {
   Name: string
 }
 
-// Type for each Result object
 export type Manufacturer = {
   Country: string
   Mfr_CommonName: string | null
@@ -15,7 +14,6 @@ export type Manufacturer = {
   VehicleTypes: VehicleType[]
 }
 
-// Overall data structure
 export type ApiResponse = {
   Count: number
   Message: string
@@ -28,8 +26,7 @@ type ManufacturerType = {
   Name: string
 }
 
-// Type for each Manufacturer object in the Results array
-type DetailedManufacturer = {
+export type DetailedManufacturer = {
   Address: string
   Address2: string | null
   City: string
@@ -38,7 +35,7 @@ type DetailedManufacturer = {
   ContactPhone: string | null
   Country: string
   DBAs: string | null
-  EquipmentItems: any[] // Replace 'any' with a more specific type if available
+  EquipmentItems: unknown[]
   LastUpdated: string
   ManufacturerTypes: ManufacturerType[]
   Mfr_CommonName: string | null
@@ -58,7 +55,7 @@ type DetailedManufacturer = {
 }
 
 // Overall data structure
-type DetailedApiResponse = {
+export type DetailedApiResponse = {
   Count: number
   Message: string
   SearchCriteria: null

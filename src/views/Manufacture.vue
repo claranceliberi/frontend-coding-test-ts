@@ -32,7 +32,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { DetailedManufacturer } from '../types/vehicle.d'
 import { getManufacturerDetails } from '../services/index'
