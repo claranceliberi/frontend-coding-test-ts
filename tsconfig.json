@@ -13,7 +13,7 @@
     "lib": ["esnext", "dom"],
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/composables/toast.test.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/composables/toast.test.ts", "tests/components/badge.test.ts", "tests/components/manufacture-card.test.ts"],
   "exclude": ["node_modules", "public"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
