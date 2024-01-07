@@ -34,35 +34,23 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useToast } from 'vue-toast-notification'
 import { DetailedManufacturer } from '../types/vehicle.d'
 import { getManufacturerDetails } from '../services/index'
+import useToaster from '../composables/toast'
 
 const route = useRoute()
 const details = ref<DetailedManufacturer[]>()
 
-const $toast = useToast()
+const { toastError, toastSuccess } = useToaster()
 
 onMounted(async () => {
   const res = await getManufacturerDetails(+route.params.id)
 
   if (res.length === 0) {
-    const instance = $toast.error('No data found!', {
-      position: 'top-right',
-    })
-    setTimeout(() => {
-      instance.dismiss()
-    }, 3000)
+    toastError('No data found')
   } else {
     details.value = res
-
-    const instance = $toast.success('Manufacture Details fetched!', {
-      position: 'top-right',
-    })
-
-    setTimeout(() => {
-      instance.dismiss()
-    }, 3000)
+    toastSuccess('Data fetched!')
   }
 })
 </script>

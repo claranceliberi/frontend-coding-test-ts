@@ -120,11 +120,11 @@
 
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-import { useToast } from 'vue-toast-notification'
 import { ShowExercises } from '../types/exercise'
 import { getAllManufacturers } from '../services/index'
 import { Manufacturer } from '../types/vehicle.d'
 import ManufactureCard from '../components/ui/ManufactureCard.vue'
+import useToaster from '../composables/toast'
 
 const showExercise = reactive<ShowExercises>({
   second: false,
@@ -137,19 +137,13 @@ const showNextExercise = (exercise: keyof ShowExercises) => {
   showExercise[exercise] = !showExercise[exercise]
 }
 
-const $toast = useToast()
+const { toastSuccess } = useToaster()
 
 onMounted(async () => {
-  console.log('Home mounted')
   const res = await getAllManufacturers(1)
 
   manufactures.push(...res.Results)
-  const instance = $toast.success('Data fetched!', {
-    position: 'top-right',
-  })
 
-  setTimeout(() => {
-    instance.dismiss()
-  }, 3000)
+  toastSuccess('Data fetched!')
 })
 </script>
